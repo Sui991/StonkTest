@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StonkDBModelStoreContainer" CdmEntityContainer="MSSQL_DBconnect">
+    <EntitySetMapping Name="StonkTable">
+      <EntityTypeMapping TypeName="StonkDBModel.StonkTable">
+        <MappingFragment StoreEntitySet="StonkTable">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="stonkID" ColumnName="stonkID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="time" ColumnName="time" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="initDate" ColumnName="initDate" />
+          <ScalarProperty Name="total" ColumnName="total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,33 +1,80 @@
-﻿@{
+﻿@using PersonalStockSystemTest.Models;
+@{ 
+    List<Stonk> stonks = ViewBag.stonks;
+}
+@{
     ViewBag.Title = "Home Page";
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <section class="filter">
+        <table>
+            <tr>
+                <td class="first"><label for="StockNum">股票代號</label></td>
+                <td class="StockN" style="border-top: 1px solid rgb(0, 0, 0)">
+                    <select name="StockNum">
+                        <option value="">請選擇</option>
+                        <option value="1215">1215</option>
+                        <option value="1102">1102</option>
+                        <option value="1101">1101</option>
+                        <option value="1104">1104</option>
+                        <option value="1109">1109</option>
+                        <option value="1108">1108</option>
+                        <option value="1103">1103</option>
+                        <option value="1106">1106</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><label for="TradeType">交易種類</label></td>
+                <td class="StockN">
+                    <select name=" TradeTyppe">
+                        <option value="">請選擇</option>
+                        <option value="買">買</option>
+                        <option value="賣">賣</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="first"><label for="TradeTime">交易時間</label></td>
+                <td class="StockN">
+                    <input type="date" name="date" /><span style="color: gray">~</span><input type="date" name="date" />
+                </td>
+            </tr>
+        </table>
+        <div class="btn"><button class="Search">查詢</button></div>
     </section>
-
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
+    <section class="StonkData">
+        <div class="scroll">
+            <table border="1">
+                <tr>
+                    <th>序號</th>
+                    <th>交易時間</th>
+                    <th>股票代號</th>
+                    <th>股票名稱</th>
+                    <th>交易種類</th>
+                    <th>股數</th>
+                    <th>單價</th>
+                    <th>價金</th>
+                    <th>手續費</th>
+                    <th>交易稅</th>
+                    <th>應收付款</th>
+                    <th>功能</th>
+                </tr>
+                <tr class="data">
+                    <td>
+                        @{ 
+                            foreach(Stonk stonk in stonks)
+            {
+                        <div>
+                            <span>@stonk.name</span>
+                        </div>
+            }
+                        }
+                    </td>
+                </tr>
+                <tr class="data2"></tr>
+            </table>
+        </div>
+    </section>
 </main>

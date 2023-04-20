@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StonkDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="StonkTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="stonkID" Type="Int32" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="time" Type="DateTime" Precision="0" />
+    <Property Name="num" Type="Int32" />
+    <Property Name="price" Type="Double" />
+    <Property Name="tax" Type="Double" />
+    <Property Name="fax" Type="Double" />
+    <Property Name="initDate" Type="DateTime" Precision="3" />
+    <Property Name="total" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="MSSQL_DBconnect" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="StonkTable" EntityType="Self.StonkTable" />
+  </EntityContainer>
+</Schema>

@@ -13,10 +13,10 @@ namespace PersonalStockSystemTest.EFModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StockSystemEntities : DbContext
+    public partial class MSSQL_DBconnect : DbContext
     {
-        public StockSystemEntities()
-            : base("name=StockSystemEntities")
+        public MSSQL_DBconnect()
+            : base("name=MSSQL_DBconnect")
         {
         }
     
@@ -25,6 +25,6 @@ namespace PersonalStockSystemTest.EFModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<StockInfo> StockInfo { get; set; }
+        public virtual DbSet<StonkTable> StonkTable { get; set; }
     }
 }

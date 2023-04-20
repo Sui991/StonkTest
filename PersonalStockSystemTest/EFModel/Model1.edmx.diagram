@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1f76f75db1434197a9b266b43cb0e37a" Name="Diagram1">
-        <EntityTypeShape EntityType="StockSystemModel.StockInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="c16977ae9b7244d4a5f408b3a6156b6b" Name="Diagram1">
+        <EntityTypeShape EntityType="StonkDBModel.StonkTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

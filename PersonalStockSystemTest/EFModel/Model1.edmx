@@ -4,43 +4,70 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StockSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="StockInfo">
+      <Schema Namespace="StonkDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="StonkTable">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stonkID" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="time" Type="date" />
+          <Property Name="num" Type="int" />
+          <Property Name="price" Type="float" />
+          <Property Name="tax" Type="float" />
+          <Property Name="fax" Type="float" />
+          <Property Name="initDate" Type="datetime" />
+          <Property Name="total" Type="int" />
         </EntityType>
-        <EntityContainer Name="StockSystemModelStoreContainer">
-          <EntitySet Name="StockInfo" EntityType="Self.StockInfo" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="StonkDBModelStoreContainer">
+          <EntitySet Name="StonkTable" EntityType="Self.StonkTable" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="StockSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="StockInfo">
+      <Schema Namespace="StonkDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="StonkTable">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stonkID" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="DateTime" Precision="0" />
+          <Property Name="num" Type="Int32" />
+          <Property Name="price" Type="Double" />
+          <Property Name="tax" Type="Double" />
+          <Property Name="fax" Type="Double" />
+          <Property Name="initDate" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Int32" />
         </EntityType>
-        <EntityContainer Name="StockSystemEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="StockInfo" EntityType="Self.StockInfo" />
+        <EntityContainer Name="MSSQL_DBconnect" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StonkTable" EntityType="Self.StonkTable" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StockSystemModelStoreContainer" CdmEntityContainer="StockSystemEntities">
-          <EntitySetMapping Name="StockInfo">
-            <EntityTypeMapping TypeName="StockSystemModel.StockInfo">
-              <MappingFragment StoreEntitySet="StockInfo">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+        <EntityContainerMapping StorageEntityContainer="StonkDBModelStoreContainer" CdmEntityContainer="MSSQL_DBconnect">
+          <EntitySetMapping Name="StonkTable">
+            <EntityTypeMapping TypeName="StonkDBModel.StonkTable">
+              <MappingFragment StoreEntitySet="StonkTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="stonkID" ColumnName="stonkID" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="initDate" ColumnName="initDate" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
