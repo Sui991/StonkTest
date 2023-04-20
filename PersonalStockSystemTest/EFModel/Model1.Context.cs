@@ -13,10 +13,10 @@ namespace PersonalStockSystemTest.EFModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MSSQL_DBconnect : DbContext
+    public partial class StonkDBEntities : DbContext
     {
-        public MSSQL_DBconnect()
-            : base("name=MSSQL_DBconnect")
+        public StonkDBEntities()
+            : base("name=StonkDBEntities")
         {
         }
     
@@ -26,5 +26,6 @@ namespace PersonalStockSystemTest.EFModel
         }
     
         public virtual DbSet<StonkTable> StonkTable { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

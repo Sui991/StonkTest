@@ -1,0 +1,98 @@
+﻿@model PersonalStockSystemTest.EFModel.StonkTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StonkTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stonkID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stonkID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.initDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.initDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

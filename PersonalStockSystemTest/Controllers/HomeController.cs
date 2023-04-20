@@ -11,7 +11,7 @@ namespace PersonalStockSystemTest.Controllers
         public ActionResult Index()
         {
             DBmanager dbmanager = new DBmanager();
-            List<Stonk> stonks = dbmanager.GetStonks();
+            var stonks = dbmanager.GetStonks();
             ViewBag.stonks = stonks;
             return View();
 

@@ -16,7 +16,18 @@
     <Property Name="initDate" Type="DateTime" Precision="3" />
     <Property Name="total" Type="Int32" />
   </EntityType>
-  <EntityContainer Name="MSSQL_DBconnect" annotation:LazyLoadingEnabled="true">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="StonkDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="StonkTable" EntityType="Self.StonkTable" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
   </EntityContainer>
 </Schema>
