@@ -46,7 +46,7 @@ section.filter {
   section.filter table {
     color: #CDC389;
     font-weight: bold;
-    width: 70%; }
+    width: 80%; }
     section.filter table tbody {
       width: 100%; }
       section.filter table tbody tr {
@@ -69,8 +69,8 @@ section.filter {
             padding: 10px; }
   section.filter div.btn {
     display: flex;
-    width: 71%;
-    justify-content: end;
+    width: 80%;
+    justify-content: flex-end;
     padding: 0.5rem; }
     section.filter div.btn button.Search {
       background-color: #2B3A6F;
@@ -87,7 +87,7 @@ section.StonkData {
   align-items: center;
   width: 100%; }
   section.StonkData div.scroll {
-    width: 69%;
+    width: 78%;
     overflow-y: scroll;
     display: flex;
     justify-content: center;

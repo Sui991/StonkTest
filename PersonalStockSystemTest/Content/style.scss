@@ -61,7 +61,7 @@ section.filter {
     table {
         color: #CDC389;
         font-weight: bold;
-        width: 70%;
+        width: 80%;
 
         tbody {
             width: 100%;
@@ -99,8 +99,8 @@ section.filter {
 
     div.btn {
         display: flex;
-        width: 71%;
-        justify-content: end;
+        width: 80%;
+        justify-content: flex-end;
         padding: 0.5rem;
 
         button.Search {
@@ -122,7 +122,7 @@ section.StonkData {
     width: 100%;
 
     div.scroll {
-        width: 69%;
+        width: 78%;
         overflow-y: scroll;
         display: flex;
         justify-content: center;

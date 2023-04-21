@@ -1,10 +1,7 @@
 ﻿@using PersonalStockSystemTest.Models;
-@{ 
-    List<Stonk> stonks = ViewBag.stonks;
-}
-@{
-    ViewBag.Title = "Home Page";
-}
+@using PersonalStockSystemTest.EFModel;
+@{ List<StonkTable> stonks = ViewBag.stonks; }
+@{ ViewBag.Title = "Home Page"; }
 
 <main>
     <section class="filter">
@@ -61,19 +58,74 @@
                     <th>應收付款</th>
                     <th>功能</th>
                 </tr>
-                <tr class="data">
-                    <td>
-                        @{ 
-                            foreach(Stonk stonk in stonks)
-            {
-                        <div>
-                            <span>@stonk.name</span>
-                        </div>
-            }
-                        }
-                    </td>
-                </tr>
-                <tr class="data2"></tr>
+
+
+                @{ foreach (StonkTable stonk in stonks)
+                    {
+                                <tr class="data">
+
+                                    <td>
+                                        <span>@stonk.id</span>
+                                    </td>
+                                    <td>
+                                        <span>@{
+                                            DateTime dateTime = (DateTime)stonk.time;
+                                            string str = dateTime.ToString("yyyy-MM-dd");
+                                            @str
+                                            }</span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.stonkID</span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.name</span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.type</span>
+                                    </td>
+
+                                    <td>
+                                        <span>@stonk.num</span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.price</span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            @{ var totalPrice = stonk.price * stonk.num; }
+                                            @totalPrice
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.tax</span>
+                                    </td>
+                                    <td>
+                                        <span>@stonk.fax</span>
+                                    </td>
+                                    <td>
+
+                                        @{ double AR = 0;
+                                            if (stonk.type == "買")
+                                            {
+                                                AR = (double)totalPrice * -1;
+                                    <span style="color:red">
+                                        @AR
+                                    </span> }
+                                else
+                                {
+                                    AR = (double)totalPrice;
+                                    <span style="color:forestgreen">
+                                        @AR
+                                    </span> }  }
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-success">編輯</button>
+                                        <button class="btn btn-danger">刪除</button>
+                                    </td>
+                                </tr>
+ } }
+
+
             </table>
         </div>
     </section>
