@@ -5,41 +5,47 @@
 
 <main>
     <section class="filter">
-        <table>
-            <tr>
-                <td class="first"><label for="StockNum">股票代號</label></td>
-                <td class="StockN" style="border-top: 1px solid rgb(0, 0, 0)">
-                    <select name="StockNum">
-                        <option value="">請選擇</option>
-                        <option value="1215">1215</option>
-                        <option value="1102">1102</option>
-                        <option value="1101">1101</option>
-                        <option value="1104">1104</option>
-                        <option value="1109">1109</option>
-                        <option value="1108">1108</option>
-                        <option value="1103">1103</option>
-                        <option value="1106">1106</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="first"><label for="TradeType">交易種類</label></td>
-                <td class="StockN">
-                    <select name=" TradeTyppe">
-                        <option value="">請選擇</option>
-                        <option value="買">買</option>
-                        <option value="賣">賣</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td class="first"><label for="TradeTime">交易時間</label></td>
-                <td class="StockN">
-                    <input type="date" name="date" /><span style="color: gray">~</span><input type="date" name="date" />
-                </td>
-            </tr>
-        </table>
-        <div class="btn"><button class="Search">查詢</button></div>
+
+            <form method="post" action="/Home/Index">
+                <table>
+                    <tr>
+                        <td class="first"><label for="StockNum">股票代號</label></td>
+                        <td class="StockN" style="border-top: 1px solid rgb(0, 0, 0)">
+                            @*<select name="StockNum">*@
+                            <asp:DropDownList ID="DropDownList1" runat="server" DataSource="<%# DLfrom1()%>"
+                                              DataTextField="useFrom" DataValueField="usePort">
+                            </asp:DropDownList>
+
+                            @*<option value="">請選擇</option>
+                @{ foreach (StonkTable stonk in stonks)
+                    {
+        <option value="@stonk.stonkID">@stonk.stonkID</option> } }*@
+
+                            @*</select>*@
+                        </td>
+                    </tr>
+                    @*<tr>
+                        <td class="first"><label for="TradeType">交易種類</label></td>
+                        <td class="StockN">
+                            <select name=" TradeTyppe">
+                                <option value="">請選擇</option>
+                                <option value="買">買</option>
+                                <option value="賣">賣</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="first"><label for="TradeTime">交易時間</label></td>
+                        <td class="StockN">
+                            <input type="date" value="date" name="date" /><span style="color: gray">~</span><input type="date" name="date" />
+                        </td>
+                    </tr>*@
+                </table>
+                <div class="btn">
+
+                    <input class="Search" type="submit" value="查詢" />
+                </div>
+            </form>
     </section>
     <section class="StonkData">
         <div class="scroll">

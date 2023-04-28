@@ -19,6 +19,16 @@ namespace PersonalStockSystemTest.Controllers
         {
             return View(db.StonkTable.ToList());
         }
+        public ActionResult Index(string searchString)
+        {
+            var result = from m in db.StonkTable select m;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                result = result.Where(s => s.name.Contains(searchString));
+            }
+            return View(db.StonkTable.ToList());
+        }
 
         // GET: StonkTables/Details/5
         public ActionResult Details(int? id)

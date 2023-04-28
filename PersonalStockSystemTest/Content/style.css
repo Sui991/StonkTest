@@ -38,47 +38,48 @@ header {
           text-decoration: none; }
 
 section.filter {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 15px; }
-  section.filter table {
-    color: #CDC389;
-    font-weight: bold;
-    width: 80%; }
-    section.filter table tbody {
-      width: 100%; }
-      section.filter table tbody tr {
-        display: flex;
-        width: 100%;
-        font-size: 1rem; }
-        section.filter table tbody tr td.StockN {
-          border-bottom: 1px solid black;
-          border-right: 1px solid black;
-          width: 80%;
-          padding: 10px; }
-          section.filter table tbody tr td.StockN select {
-            width: 100%; }
-        section.filter table tbody tr td.first {
-          display: flex;
-          width: 20%;
-          background-color: #2B3A6F;
-          border-bottom: 1px solid white; }
-          section.filter table tbody tr td.first label {
-            padding: 10px; }
-  section.filter div.btn {
+  width: 100%; }
+  section.filter form {
     display: flex;
-    width: 80%;
-    justify-content: flex-end;
-    padding: 0.5rem; }
-    section.filter div.btn button.Search {
-      background-color: #2B3A6F;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; }
+    section.filter form table {
       color: #CDC389;
-      border: none;
-      font-size: 0.7rem;
-      padding: 5px 8px;
-      border-radius: 3px; }
+      font-weight: bold;
+      width: 80%; }
+      section.filter form table tbody {
+        width: 100%; }
+        section.filter form table tbody tr {
+          display: flex;
+          width: 100%;
+          font-size: 1rem; }
+          section.filter form table tbody tr td.StockN {
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+            width: 80%;
+            padding: 10px; }
+            section.filter form table tbody tr td.StockN select {
+              width: 100%; }
+          section.filter form table tbody tr td.first {
+            display: flex;
+            width: 20%;
+            background-color: #2B3A6F;
+            border-bottom: 1px solid white; }
+            section.filter form table tbody tr td.first label {
+              padding: 10px; }
+    section.filter form div.btn {
+      display: flex;
+      width: 80%;
+      justify-content: flex-end;
+      padding: 0.5rem; }
+      section.filter form div.btn input.Search {
+        background-color: #2B3A6F;
+        color: #CDC389;
+        border: none;
+        font-size: 0.7rem;
+        padding: 5px 8px;
+        border-radius: 3px; }
 
 section.StonkData {
   display: flex;

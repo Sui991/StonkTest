@@ -19,6 +19,8 @@ namespace PersonalStockSystemTest.Models
         public int stonkID { get; set; }
 
         public string type { get; set; }
+
+        
      
     }
 }

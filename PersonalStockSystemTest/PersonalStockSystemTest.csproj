@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Class1.cs" />
     <Compile Include="Models\DBmanager.cs" />
     <Compile Include="Models\Stonk.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
