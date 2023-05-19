@@ -1,0 +1,152 @@
+﻿@model PersonalStockSystemTest.Models.model_List
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StonkTable</h4>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+            <th>序號</th>
+            <th>交易時間</th>
+            <th>股票代號</th>
+            <th>股票名稱</th>
+            <th>交易種類</th>
+            <th>股數</th>
+            <th>單價</th>
+            <th>價金</th>
+            <th>手續費</th>
+            <th>交易稅</th>
+            <th>應收付款</th>
+            
+        </tr>
+        @foreach (var item in Model.Log_List)
+        {
+
+    <tr>
+        <td>@Html.DisplayFor(s => item.id) </td>
+        @{ DateTime dateTime = (DateTime)item.time;
+            string str = dateTime.ToString("yyyy-MM-dd");
+    }
+        <td>@Html.DisplayFor(s => str) </td>
+        <td>@Html.DisplayFor(s => item.stonkID) </td>
+        <td>@Html.DisplayFor(s => item.name) </td>
+        <td>@Html.DisplayFor(s => item.type) </td>
+        <td>@Html.DisplayFor(s => item.num) </td>
+        <td>@Html.DisplayFor(s => item.price) </td>
+        @{ var totalPrice = item.price * item.num; }
+        <td>@Html.DisplayFor(s => totalPrice) </td>
+        <td>@Html.DisplayFor(s => item.tax) </td>
+        <td>@Html.DisplayFor(s => item.fax) </td>
+        <td>
+            @{ double AR = 0;
+                if (item.type == "買")
+                {
+                    AR = (double)totalPrice * -1;
+                    @Html.DisplayFor(s => AR)
+                }
+                else
+                {
+                    @Html.DisplayFor(s => totalPrice);
+                }
+            }
+        </td>
+    </tr>
+
+
+        }
+    </table>
+        @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.stonkID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.stonkID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.time)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.time)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.num)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.num)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fax)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fax)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.initDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.initDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.total)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.total)
+            </dd>
+
+        </dl>
+
+    </div>*@
+   
+<p>
+    @Html.ActionLink("編輯", "Edit", new { id = Model.stID })
+    @Html.ActionLink("刪除", "Delete", new { id = Model.stID })|
+    @Html.ActionLink("Back to List", "Index")
+</p>

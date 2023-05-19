@@ -8,6 +8,19 @@
 body {
   background-color: #f6f2e7; }
 
+div.btn {
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+  padding: 0.5rem; }
+  div.btn input.Search {
+    background-color: #2B3A6F;
+    color: #CDC389;
+    border: none;
+    font-size: 0.7rem;
+    padding: 5px 8px;
+    border-radius: 3px; }
+
 header {
   display: flex;
   flex-direction: column;
@@ -68,18 +81,6 @@ section.filter {
             border-bottom: 1px solid white; }
             section.filter form table tbody tr td.first label {
               padding: 10px; }
-    section.filter form div.btn {
-      display: flex;
-      width: 80%;
-      justify-content: flex-end;
-      padding: 0.5rem; }
-      section.filter form div.btn input.Search {
-        background-color: #2B3A6F;
-        color: #CDC389;
-        border: none;
-        font-size: 0.7rem;
-        padding: 5px 8px;
-        border-radius: 3px; }
 
 section.StonkData {
   display: flex;
@@ -108,3 +109,13 @@ section.StonkData {
   section.StonkData button {
     padding: 5px 10px;
     margin: 5px; }
+  section.StonkData button.edit {
+    background-color: #FFC107;
+    border: none;
+    border-radius: 5px;
+    color: black; }
+  section.StonkData button.del {
+    background-color: #DC3545;
+    border: none;
+    border-radius: 5px;
+    color: white; }

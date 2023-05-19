@@ -15,10 +15,10 @@ namespace PersonalStockSystemTest.Controllers
         private StonkDBEntities db = new StonkDBEntities();
 
         // GET: StonkTables
-        public ActionResult Index()
-        {
-            return View(db.StonkTable.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(db.StonkTable.ToList());
+        //}
         public ActionResult Index(string searchString)
         {
             var result = from m in db.StonkTable select m;

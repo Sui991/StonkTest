@@ -10,6 +10,7 @@ using PersonalStockSystemTest.Models;
 using PersonalStockSystemTest.EFModel;
 using System.Threading.Tasks;
 
+
 namespace PersonalStockSystemTest.Controllers
 {
     public class HomeController : Controller
@@ -20,157 +21,70 @@ namespace PersonalStockSystemTest.Controllers
             DBmanager dbmanager = new DBmanager();
             var stonks = dbmanager.GetStonks();
             ViewBag.stonks = stonks;
-            return View();
-        
+            model_List model_List = new model_List();
+            model_List.Init();
+            return View(model_List);
 
+
+        }
+       
+        public ActionResult Search()
+        {
+     
+            model_List model_List = new model_List();
+            model_List.Init();
+            return View(model_List);
         }
         [HttpPost]
-        public ActionResult
-        Index(int? id)
+        public ActionResult Search(model_List model_List)
         {
-            {
-               
-                if (id == null)
-                {
-                   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                StonkTable stonkTable = db.StonkTable.Find(id);
-                if (stonkTable == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(stonkTable);
-            }
-             //DBmanager dbmanager = new DBmanager();
-                //var stonks = dbmanager.GetStonks();
-                //ViewBag.stonks = stonks;
-                //var result = from m in db.StonkTable select m;
-                // result = result.Where(s => s.stonkID.HasValue);
-                //    if (result != null)
-                //   {
-                     
-                //       db.SaveChanges();
-                      
-                //      return View(result);
-                //   }
-                // else
-                //     return View();
+            model_List.Search();
+            return View(model_List);
         }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-        // GET: StonkTables/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
-        }
-
-        // GET: StonkTables/Create
         public ActionResult Create()
         {
+            //DBmanager dbmanager = new DBmanager();
+            ////var stonks = dbmanager.GetStonks();
+            //CRUD stonks = new CRUD();
+            //stonks.Search(id);
+            model_List model_List = new model_List();
+        
             return View();
         }
-
-        // POST: StonkTables/Create
-        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,stonkID,type,time,num,price,tax,fax,initDate,total")] StonkTable stonkTable)
+        public ActionResult Create(model_List model_List)
         {
-            if (ModelState.IsValid)
-            {
-                db.StonkTable.Add(stonkTable);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(stonkTable);
+            model_List.Create();
+            
+            return View();
         }
-
-        // GET: StonkTables/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
-        }
-
-        // POST: StonkTables/Edit/5
-        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,stonkID,type,time,num,price,tax,fax,initDate,total")] StonkTable stonkTable)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(stonkTable).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(stonkTable);
-        }
-
-        // GET: StonkTables/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
+            model_List model_List = new model_List();
+            model_List.Delete(id);
+            return View(model_List);
         }
-
-        // POST: StonkTables/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost,ActionName("Delete")]
+        public ActionResult DeleteComfirmed(int? id)
         {
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            db.StonkTable.Remove(stonkTable);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            model_List model_List = new model_List();
+            model_List.Delete(id);
+            return View(model_List);
         }
-
-        protected override void Dispose(bool disposing)
+        public ActionResult Edit(int id)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            model_List model_List = new model_List();
+        
+            model_List.Edit(id);
+            return View(model_List);
+        }
+        [HttpPost]
+        public ActionResult Edit(int id, model_List model_List)
+        {
+
+            model_List.Edit(id);
+            
+            return View(model_List);
         }
     }
 }
