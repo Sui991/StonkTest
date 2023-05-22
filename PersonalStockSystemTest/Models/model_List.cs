@@ -54,31 +54,8 @@ namespace PersonalStockSystemTest.Models
             return "";
         }
 
-        public void Create()
-        {
-            //try
-            //{
-                StonkTable addData = new StonkTable()
-                {
-                    id = this.st_id,
-                    name = this.st_name,
-                    stonkID=this.st_stonkID,
-                    time=this.st_time,
-                    type = this.st_type,
-                    num = this.st_num,
-                    price = this.st_price,
-                    tax = this.st_tax,
-                    fax = this.st_fax
-                };
-                DB.StonkTable.Add(addData);
-                DB.SaveChanges();
-            // }
-            //catch (Exception e)
-            //{
-            //    return e.Message;
-            //}
-           
-        }
+      
+        
         public string Search()
     {
             try
@@ -93,56 +70,8 @@ namespace PersonalStockSystemTest.Models
             }
             return "查詢成功";
     }
-        public string Edit(int id)
-        {
-            try
-            {  
-               // this.Log_List = DB.StonkTable.Where(x => x.id == id).ToList();
-                var editData = DB.StonkTable.Where(x => x.id == id).FirstOrDefault();
-                //foreach (var item in this.Log_List)
-                //{ 
-                //editData.stonkID = item.stonkID; 
-                //editData.name = item.name;
-                //editData.time = item.time;
-                //editData.type = item.type;
-                //editData.num = item.num;
-                //editData.price = item.price;
-                //editData.tax = item.tax;
-                //editData.fax = item.fax;
-
-                //}
-                editData.stonkID = this.st_stonkID;
-                editData.name = this.st_name;
-                editData.time = this.st_time;
-                editData.type = this.st_type;
-                editData.num = this.st_num;
-                editData.price = this.st_price;
-                editData.tax = this.st_tax;
-                editData.fax = this.st_fax;
-
-                DB.SaveChanges();
-            }
-            catch(Exception e)
-            {
-                return e.ToString();
-            }
-            return "";
-        }
-        public string Delete(int? id)
-        {
-            try
-            {
-                var removeData = DB.StonkTable.Where(x => x.id == id).FirstOrDefault();
-                DB.StonkTable.Remove(removeData);
-                DB.SaveChanges();
-
-            }
-            catch (Exception e)
-            {
-                return e.ToString();
-            }
-            return "";
-        }
+        
+      
 
     }
 }

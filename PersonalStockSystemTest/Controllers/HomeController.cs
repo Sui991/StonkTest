@@ -47,44 +47,43 @@ namespace PersonalStockSystemTest.Controllers
             ////var stonks = dbmanager.GetStonks();
             //CRUD stonks = new CRUD();
             //stonks.Search(id);
-            model_List model_List = new model_List();
+            model_Create model_crate = new model_Create();
         
             return View();
         }
         [HttpPost]
-        public ActionResult Create(model_List model_List)
+        public ActionResult Create(model_Create model_crate)
         {
-            model_List.Create();
+            model_crate.Create();
             
             return View();
         }
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            model_List model_List = new model_List();
-            model_List.Delete(id);
-            return View(model_List);
+            model_Edit model_Delete = new model_Edit();
+            model_Delete.Load(id);
+            return View(model_Delete);
         }
-        [HttpPost,ActionName("Delete")]
-        public ActionResult DeleteComfirmed(int? id)
+        [HttpPost]
+        public ActionResult Delete(model_Edit model_edit)
         {
-            model_List model_List = new model_List();
-            model_List.Delete(id);
-            return View(model_List);
+            model_edit.Delete();
+            return RedirectToAction("Index");
         }
+
         public ActionResult Edit(int id)
         {
-            model_List model_List = new model_List();
-        
-            model_List.Edit(id);
-            return View(model_List);
+            model_Edit model_edit = new model_Edit();
+            model_edit.Load(id);
+            return View(model_edit);
         }
         [HttpPost]
-        public ActionResult Edit(int id, model_List model_List)
+        public ActionResult Edit(model_Edit model_edit)
         {
 
-            model_List.Edit(id);
-            
-            return View(model_List);
+            model_edit.edit();
+
+            return RedirectToAction("Index");
         }
     }
 }

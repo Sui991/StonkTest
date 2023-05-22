@@ -1,4 +1,4 @@
-﻿@model PersonalStockSystemTest.Models.model_List
+﻿@model PersonalStockSystemTest.Models.model_Create
 
 @{
     ViewBag.Title = "Create";
@@ -24,37 +24,37 @@
     <tr>
    
         <td>
-            @Html.EditorFor(model => model.st_time, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_time, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.time, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.time, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_stonkID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_stonkID, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.stonkID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.stonkID, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_name, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.name, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_type, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_type, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.type, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.type, "", new { @class = "text-danger" })
 
         </td>
         <td>
-            @Html.EditorFor(model => model.st_num, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_num, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.num, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.num, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_price, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_price, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.price, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_tax, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_tax, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.tax, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.tax, "", new { @class = "text-danger" })
         </td>
         <td>
-            @Html.EditorFor(model => model.st_fax, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.st_fax, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.CreateTable.fax, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CreateTable.fax, "", new { @class = "text-danger" })
         </td>
     </tr>
 

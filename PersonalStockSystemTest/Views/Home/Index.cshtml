@@ -20,7 +20,7 @@
     <tr>
         <td class="first"><label for="StockNum">股票代號</label></td>
         <td class="StockN" style="border-top: 1px solid rgb(0, 0, 0)">
-            @Html.DropDownListFor(x => x.stID, Model.select, new { @style = "background-color:yellow" })
+            @Html.DropDownListFor(x => x.stID, Model.select, new { @style = "background-color:white" })
 
         </td>
     </tr>
@@ -34,8 +34,8 @@
                     <option value="賣">賣</option>
                 </select>
             </td>
-        </tr>*@
-    @*<tr>
+        </tr>
+    <tr>
             <td class="first"><label for="TradeTime">交易時間</label></td>
             <td class="StockN">
                 <input type="date" value="date" name="date" /><span style="color: gray">~</span><input type="date" name="date" />
@@ -96,9 +96,9 @@
                 </span>} } 
                 </td>
                 <td>
-                  
-                    @Html.ActionLink("編輯", "Edit", "Home", new { id = item.id }, new { @class = "btn btn-default" })
-                @Html.ActionLink("刪除", "Delete", "Home", new { id = item.id }, new { @class = "btn btn-default" })  | 
+
+                    <button type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Edit")?id=@item.id'">編輯</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("Delete")?id=@item.id'">刪除</button>
 
                 </td>
             </tr>

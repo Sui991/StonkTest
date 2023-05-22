@@ -154,6 +154,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\model_Create.cs" />
+    <Compile Include="Models\model_Edit.cs" />
     <Compile Include="Models\model_List.cs" />
     <Compile Include="Models\DBmanager.cs" />
     <Compile Include="Models\Stonk.cs" />
@@ -195,6 +197,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JavaScript\DeleteConfirm.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
