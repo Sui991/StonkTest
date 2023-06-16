@@ -6,132 +6,211 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PersonalStockSystemTest.Models;
 using PersonalStockSystemTest.EFModel;
+using System.Threading.Tasks;
+using System.IO;
+using HtmlAgilityPack;
+using System.Text;
+
 
 namespace PersonalStockSystemTest.Controllers
 {
     public class StonkTablesController : Controller
     {
-        private StonkDBEntities db = new StonkDBEntities();
+        StonkDBEntities db = new StonkDBEntities();
+        public ActionResult Index()
+        {
+            DBmanager dbmanager = new DBmanager();
+            var stonks = dbmanager.GetStonks();
+            ViewBag.stonks = stonks;
+            model_List model_List = new model_List();
+            model_List.Init();
+            return View(model_List);
 
-        // GET: StonkTables
-        //public ActionResult Index()
+
+        }
+        public static bool isValidURL(string url)
+        {
+            WebRequest webRequest = WebRequest.Create(url);
+            WebResponse webResponse;
+            try
+            {
+                webResponse = webRequest.GetResponse();
+            }
+            catch //If exception thrown then couldn't get response from address
+            {
+                return false;
+            }
+            return true;
+        }
+        public JsonResult GetCrawler(int id)
+        {
+            model_List model = new model_List();
+            var stonkID = id.ToString();
+            return Json(data: model.GetPythonJson(stonkID), JsonRequestBehavior.AllowGet);
+        }
+        //public ActionResult Test()
         //{
-        //    return View(db.StonkTable.ToList());
+        //    Crawler model = new Crawler();
+        //    string SourceURL_1 = "http://www.coolpc.com.tw/evaluate.phpsdfsdfanlksjfiojsidhfsdfsdfsdfsdf";
+        //    string SourceURL_2 = "https://www.cnyes.com/twstock/2330";
+
+
+        //    string Endpoint = "";
+        //    if (isValidURL(SourceURL_1))
+        //    {
+        //        model.dataSource = "目前使用第一個資料來源";
+        //        Endpoint = SourceURL_1;
+        //    }
+        //    else if (isValidURL(SourceURL_2))
+        //    {
+        //        model.dataSource = "目前使用第二個資料來源~";
+        //        Endpoint = SourceURL_2;
+        //    }
+        //    else
+        //    {
+        //        model.dataSource = "兩個資料來源都掛惹~ zzz";
+        //    }
+        //    //-----------------------------------------------------------------------------------------
+        //    WebClient url = new WebClient();
+        //    //Note: 將網頁來源資料暫存到記憶體內
+        //    MemoryStream ms = new MemoryStream(url.DownloadData(Endpoint));
+        //    //Note: 使用預設編碼讀入 HTML  ,此為第三方套件 HtmlAgilityPack
+        //    HtmlDocument doc = new HtmlDocument();
+        //    doc.Load(ms, Encoding.Default);
+        //   //*********************************
+        //   //< h3 class="jsx-162737614 rise">30.25</h3>
+        //    var priceNode = doc.DocumentNode.SelectSingleNode("//h3[@class='jsx-162737614 rise']");
+        //    if (priceNode != null)
+        //    {
+        //        string priceText = priceNode.InnerText;
+        //        model.data1 = priceText;
+        //    }
+        //    else if (priceNode == null)
+        //    {
+        //         priceNode = doc.DocumentNode.SelectSingleNode("//h3[@class='jsx-162737614 fall']");
+        //        string priceText = priceNode.InnerText;
+        //        model.data1 = priceText;
+        //    }
+        //    else
+        //    {
+        //        model.data1 = "無法獲取股票價格";
+        //    }
+        //    TempData["data1"]= model.data1;
+        //    return View(model);
         //}
-        public ActionResult Index(string searchString)
+
+        public ActionResult Search()
         {
-            var result = from m in db.StonkTable select m;
+     
+            model_List model_List = new model_List();
+            model_List.Init();
+            //----------爬蟲----------------
+          
+            return View(model_List);
 
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                result = result.Where(s => s.name.Contains(searchString));
-            }
-            return View(db.StonkTable.ToList());
         }
+        [HttpPost]
+        public ActionResult Search(model_List model_List)
+        {          
+            TempData["Msg"] = model_List.Search();
+            TempData["StonkID"] = model_List.GetID();
+            
 
-        // GET: StonkTables/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
+            //Crawler model = new Crawler();  
+            //string SourceURL_1 = "http://www.coolpc.com.tw/evaluate.phpsdfsdfanlksjfiojsidhfsdfsdfsdfsdf";
+            //string SourceURL_2 = $"https://www.cnyes.com/twstock/{key}";
+
+
+            //string Endpoint = "";
+            //if (isValidURL(SourceURL_1))
+            //{
+            //    model.dataSource = "目前使用第一個資料來源";
+            //    Endpoint = SourceURL_1;
+            //}
+            //else if (isValidURL(SourceURL_2))
+            //{
+            //    model.dataSource = "目前使用第二個資料來源~";
+            //    Endpoint = SourceURL_2;
+            //}
+            //else
+            //{
+            //    model.dataSource = "兩個資料來源都掛惹~ zzz";
+            //}
+            ////-----------------------------------------------------------------------------------------
+            //WebClient url = new WebClient();
+            ////Note: 將網頁來源資料暫存到記憶體內
+            //MemoryStream ms = new MemoryStream(url.DownloadData(Endpoint));
+            ////Note: 使用預設編碼讀入 HTML  ,此為第三方套件 HtmlAgilityPack
+            //HtmlDocument doc = new HtmlDocument();
+            //doc.Load(ms, Encoding.Default);
+            ////*********************************
+            ////< h3 class="jsx-162737614 rise">30.25</h3>
+            //var priceNode = doc.DocumentNode.SelectSingleNode("//h3[@class='jsx-162737614 rise']");
+            //if (priceNode != null)
+            //{
+            //    string priceText = priceNode.InnerText;
+            //    model.data1 = priceText;
+            //}
+            //else if (priceNode == null)
+            //{
+            //    priceNode = doc.DocumentNode.SelectSingleNode("//h3[@class='jsx-162737614 fall']");
+            //    string priceText = priceNode.InnerText;
+            //    model.data1 = priceText;
+            //}
+            //else
+            //{
+            //    model.data1 = "無法獲取股票價格";
+            //}
+            //TempData["data1"] = model.data1;
+            TempData["Msg"] = model_List.Search();
+            return View(model_List);
         }
-
-        // GET: StonkTables/Create
         public ActionResult Create()
         {
+            //DBmanager dbmanager = new DBmanager();
+            ////var stonks = dbmanager.GetStonks();
+            //CRUD stonks = new CRUD();
+            //stonks.Search(id);
+            model_Create model_crate = new model_Create();
+        
             return View();
         }
-
-        // POST: StonkTables/Create
-        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,stonkID,type,time,num,price,tax,fax,initDate,total")] StonkTable stonkTable)
+        public ActionResult Create(model_Create model_crate)
         {
-            if (ModelState.IsValid)
-            {
-                db.StonkTable.Add(stonkTable);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(stonkTable);
+            TempData["Msg"] = model_crate.Create();
+            
+            return View();
         }
-
-        // GET: StonkTables/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
+            model_Edit model_Delete = new model_Edit();
+            model_Delete.Load(id);
+            return View(model_Delete);
         }
-
-        // POST: StonkTables/Edit/5
-        // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,stonkID,type,time,num,price,tax,fax,initDate,total")] StonkTable stonkTable)
+        public ActionResult Delete(model_Edit model_edit)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(stonkTable).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(stonkTable);
-        }
-
-        // GET: StonkTables/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            if (stonkTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(stonkTable);
-        }
-
-        // POST: StonkTables/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            StonkTable stonkTable = db.StonkTable.Find(id);
-            db.StonkTable.Remove(stonkTable);
-            db.SaveChanges();
+           
+            TempData["Msg"] = model_edit.Delete();
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Edit(int id)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            model_Edit model_edit = new model_Edit();
+            model_edit.Load(id);
+            return View(model_edit);
+        }
+        [HttpPost]
+        public ActionResult Edit(model_Edit model_edit)
+        {
+
+            TempData["Msg"] = model_edit.edit();
+            return RedirectToAction("Index");
         }
     }
 }
+

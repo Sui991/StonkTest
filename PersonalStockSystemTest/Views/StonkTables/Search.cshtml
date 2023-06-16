@@ -1,7 +1,7 @@
-﻿@model PersonalStockSystemTest.EFModel.StonkTable
+﻿@model PersonalStockSystemTest.Models.model_List
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Search";
 }
 
 <h2>Details</h2>
@@ -9,90 +9,77 @@
 <div>
     <h4>StonkTable</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.name)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.name)
-        </dd>
+    <h3>鉅亨網目前股票單價 @Html.Raw(TempData["data1"])</h3>
+    @Html.Raw(TempData["data1"])
+    @foreach (var item in Model.Log_List)
+    {<button type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("GetCrawler", "StonkTables")?id=@item.stonkID'">Get</button>}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.stonkID)
-        </dt>
+    <table class="table table-bordered">
+        <tr>
+            <th>序號</th>
+            <th>交易時間</th>
+            <th>股票代號</th>
+            <th>股票名稱</th>
+            <th>交易種類</th>
+            <th>股數</th>
+            <th>單價</th>
+            <th>價金</th>
+            <th>手續費</th>
+            <th>交易稅</th>
+            <th>應收付款</th>
 
-        <dd>
-            @Html.DisplayFor(model => model.stonkID)
-        </dd>
+        </tr>
+        @foreach (var item in Model.Log_List)
+        {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.type)
-        </dt>
+            <tr>
+                <td>@Html.DisplayFor(s => item.id) </td>
+                @{ DateTime dateTime = (DateTime)item.time;
+                    string str = dateTime.ToString("yyyy-MM-dd");
+                }
+                <td>@Html.DisplayFor(s => str) </td>
+                <td>@Html.DisplayFor(s => item.stonkID) </td>
+                <td>@Html.DisplayFor(s => item.name) </td>
+                <td>@Html.DisplayFor(s => item.type) </td>
+                <td>@Html.DisplayFor(s => item.num) </td>
+                <td>@Html.DisplayFor(s => item.price) </td>
+                @{ var totalPrice = item.price * item.num; }
+                <td>@Html.DisplayFor(s => totalPrice) </td>
+                <td>@Html.DisplayFor(s => item.tax) </td>
+                <td>@Html.DisplayFor(s => item.fax) </td>
+                <td>
+                    @{ double AR = 0;
+                        if (item.type == "買")
+                        {
+                            AR = (double)totalPrice * -1;
+                            @Html.DisplayFor(s => AR)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(s => totalPrice);
+                        }
+                    }
+                </td>
+            </tr>
 
-        <dd>
-            @Html.DisplayFor(model => model.type)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.time)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.time)
-        </dd>
+        }
+    </table>
+    @section Scripts {
+        <script>
+    $(function () {
+        let Msg = "@TempData["Msg"]";
+        if (Msg != null && Msg != "") {
+            alert(Msg);
+        }
+    });
+        </script>
+    }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.num)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.num)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.fax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.fax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.initDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.initDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.total)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.total)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.ActionLink("編輯", "Edit", new { id = Model.stID })
+        @Html.ActionLink("刪除", "Delete", new { id = Model.stID })|
+        @Html.ActionLink("Back to List", "Index")
+    </p>

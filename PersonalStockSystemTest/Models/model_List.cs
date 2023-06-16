@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PersonalStockSystemTest.EFModel;
+using System.Diagnostics;
 namespace PersonalStockSystemTest.Models
 {
     public class model_List
@@ -24,14 +25,14 @@ namespace PersonalStockSystemTest.Models
         public Nullable<System.DateTime> initDate { get; set; }
         public Nullable<int> total { get; set; }
         public List<StonkTable> Log_List { get; set; }
-  
+       
         public model_List()
         {
             this.Log_List = new List<StonkTable>();
             this.select = new List<SelectListItem>();
           
         }
-
+       
         public string Init()
         {
             try
@@ -53,8 +54,34 @@ namespace PersonalStockSystemTest.Models
             }
             return "";
         }
+        public string GetID()
+        {
+            var CrawerID = DB.StonkTable.Where(x => x.id == this.stID).FirstOrDefault();
 
-      
+            return CrawerID.stonkID.ToString() ;
+        }
+
+      public JsonResult GetPythonJson(string stonkID)
+        {
+           
+            string python_path = @"C:\Users\user\AppData\Local\Programs\Python\Python311\python.exe";
+            string pythonfile_path = @"D:\Desktop\StonkSystemTest\PersonalStockSystemTest\Scripts\Crawler.py";
+            ProcessStartInfo startInfo = new ProcessStartInfo(python_path, pythonfile_path);
+            startInfo.UseShellExecute = false;
+            startInfo.RedirectStandardOutput = true;
+            startInfo.RedirectStandardError = true;
+            startInfo.RedirectStandardInput = true;
+            startInfo.CreateNoWindow = true;
+            startInfo.Arguments = stonkID;
+            Process process = new Process();
+            process.StartInfo = startInfo;
+            process.Start();
+            JsonResult json = new JsonResult();
+            json.Data = process.StandardOutput.ReadToEnd();
+            process.BeginErrorReadLine();
+            process.WaitForExit();
+            return json;
+        }
         
         public string Search()
     {
@@ -74,4 +101,5 @@ namespace PersonalStockSystemTest.Models
       
 
     }
+    
 }

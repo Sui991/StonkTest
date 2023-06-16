@@ -47,13 +47,12 @@ namespace PersonalStockSystemTest.Models
                 var removeData = DB.StonkTable.Where(x => x.id == UpdateData.id).FirstOrDefault();
                 DB.StonkTable.Remove(removeData);
                 DB.SaveChanges();
-
             }
             catch (Exception e)
             {
                 return e.ToString();
             }
-            return "";
+            return "刪除成功";
         }
     }
 }
